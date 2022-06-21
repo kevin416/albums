@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Yepos\Albums\Models\Albums;
 Route::get('albums',function (){
+    $albums = Albums::inRandomOrder()->get();
+
+    return view('albums::index',compact('albums'));
+});
+
+Route::get('read_photos', function (){
 //    $files = File::allFiles(storage_path('albums'));
 //
 //    foreach ($files as $file) {
@@ -27,30 +33,27 @@ Route::get('albums',function (){
 //        $file = pathinfo($path);
 //        echo $file['filename'] ;
 //    }
-
-
-
-        $directories = Storage::disk('public')->directories('albums');
-        $folders = [];
-        foreach ($directories as $dir) {
-            $folder = str_replace('albums/', '',$dir);
+    $directories = Storage::disk('public')->directories('albums');
+    $folders = [];
+    foreach ($directories as $dir) {
+        $folder = str_replace('albums/', '',$dir);
 //            array_push($folders, $folder);
 
-            $files = Storage::disk('public')->allFiles($dir);
+        $files = Storage::disk('public')->allFiles($dir);
 
-            foreach ($files as $file) {
-                //Check already have the file or not
-                $check = Albums::where('file_name', $file)->count();
-                if($check == 0){
-                        //Create a new file
-                    Albums::create(['folder'=>$folder,'file_name'=>$file]);
-                }
+        foreach ($files as $file) {
+            //Check already have the file or not
+            $check = Albums::where('file_name', $file)->count();
+            if($check == 0){
+                //Create a new file
+                Albums::create(['folder'=>$folder,'file_name'=>$file]);
             }
-
         }
-        $albums = Albums::inRandomOrder()->get();
 
-    return view('albums::index',compact('albums'));
-
-
+    }
+    echo 'ok';
+});
+Route::get('generate_link', function (){
+    \Illuminate\Support\Facades\Artisan::call('storage:link');
+    echo 'ok';
 });
