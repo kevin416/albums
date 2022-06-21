@@ -1,0 +1,32 @@
+{
+    "name": "yepos/albums",
+    "description": "Albums",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kevin",
+            "email": "uncochen@hotmail.com"
+        }
+    ],
+    "require": {
+
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Yepos\\Albums\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Yepos\\Albums\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Yepos\\Albums\\AlbumsServiceProvider"
+            ]
+        }
+    }
+}
