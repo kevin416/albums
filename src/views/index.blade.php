@@ -9,7 +9,8 @@
             </div>
             @foreach($albums as $album)
             <div class="carousel-item">
-                <img src="{{ asset('storage/'.$album->file_name) }}" class="d-block w-100" alt="...">
+
+                <img src="{{ asset('storage/'.$album->file_name) }}" class="d-block w-100" style="height:{{ config('albums.image_height') ? config('albums.image_height') : 900 }}px;">
 {{--                <input type="text" value="{{ asset('storage/'.$album->file_name) }}">--}}
             </div>
             @endforeach

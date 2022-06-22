@@ -12,12 +12,12 @@ class AlbumsServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/views','albums');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
 //
-//        $this->mergeConfigFrom(__DIR__ . '/config/albums.php','albums');
+        $this->mergeConfigFrom(__DIR__ . '/config/albums.php','albums');
 //        $this->loadTranslationsFrom(__DIR__.'/lang', 'albums');
 //
-//        $this->publishes([
-//            __DIR__ . '/config/albums.php' => config_path('albums.php'),
-//        ]);
+        $this->publishes([
+            __DIR__ . '/config/albums.php' => config_path('albums.php'),
+        ]);
 
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
         $this->loadRoutesFrom(__DIR__ . '/routes/api.php');

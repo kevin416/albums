@@ -3,6 +3,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Yepos\Albums\Models\Albums;
+use Illuminate\Support\Facades\DB;
+use Yepos\Albums\Http\Controllers\AlbumsController;
+
 Route::get('albums',function (){
     $albums = Albums::inRandomOrder()->get();
 
@@ -53,6 +56,11 @@ Route::get('read_photos', function (){
     }
     echo 'ok';
 });
+Route::get('clear_data', function (){
+    DB::table('albums')->truncate();
+    echo 'ok';
+});
+
 Route::get('generate_link', function (){
     \Illuminate\Support\Facades\Artisan::call('storage:link');
     echo 'ok';
